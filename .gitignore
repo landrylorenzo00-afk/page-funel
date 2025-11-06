@@ -1,2 +1,3 @@
 assets/*.mov
 assets/*.mp4
+!assets/video.mp4
