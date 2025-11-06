@@ -103,6 +103,7 @@
     video.addEventListener("click", () => {
       if (video.paused) {
         video.muted = false; video.volume = 1;
+        try { video.currentTime = 0; } catch(_) {}
         tryPlay();
       }
     });
@@ -117,6 +118,7 @@
         e.preventDefault();
         // Activer le son à la lecture (geste utilisateur)
         vid.muted = false; vid.volume = 1;
+        try { vid.currentTime = 0; } catch(_) {}
         vid.play().catch(()=>{});
         vid.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
