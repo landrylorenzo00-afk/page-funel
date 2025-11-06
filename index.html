@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Receptionist.IA — Répondeur 24/7 assisté par IA</title>
+  <meta name="description" content="Receptionist.IA — Vidéo obligatoire pour débloquer la prise de rendez-vous. Données réelles sur les appels manqués et l’impact du délai de rappel." />
+  <meta name="theme-color" content="#0b0b0b" />
+  <meta property="og:title" content="Receptionist.IA — Répondeur 24/7 assisté par IA" />
+  <meta property="og:description" content="Vidéo obligatoire → CTA déverrouillé. Études HBR/MIT/Google sur appels manqués, graphiques et calculateur." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+  <script async src="https://assets.calendly.com/assets/external/widget.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body id="top">
+  <main class="wrap">
+    <section class="hero" id="top-section">
+      <div class="hero-head">
+        <a class="logo-link" href="#top" aria-label="Retour en haut de page">
+          <img src="assets/logo.png" alt="Logo Receptionist.IA" class="logo" />
+        </a>
+        <div class="hero-copy">
+          <h1>Réceptionniste IA</h1>
+          <p class="metric">
+            <span class="hl-red">+3 000</span> € de <span class="hl-red">chiffre d’affaires</span> le premier mois
+            et <span class="hl-red">+20 h</span> d’appels <span class="hl-red">économisées</span>.
+          </p>
+          <p class="assure">garantie remboursement intégral</p>
+          <p class="punchline">Chaque appel manqué finance votre concurrent.</p>
+          <p class="hint" id="hint">Regardez la vidéo jusqu’au bout pour débloquer la prise de rendez-vous.</p>
+        </div>
+      </div>
+
+      <div class="video-wrap" aria-label="Vidéo de présentation">
+        <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="assets/poster.jpg">
+          <source src="https://jqfmbf4m5fwza90u.public.blob.vercel-storage.com/video.mp4" type="video/mp4" />
+          Votre navigateur ne supporte pas la vidéo HTML5.
+        </video>
+        <div class="video-thumb" id="videoThumb" aria-hidden="true"></div>
+        <div class="video-veil" id="videoVeil" aria-hidden="true"></div>
+        <button id="watch" class="play" type="button" aria-label="Lire la vidéo">▶︎ Voir la vidéo</button>
+      </div>
+
+      <button id="cta" class="cta locked" type="button" disabled aria-disabled="true" data-calendly-url="https://calendly.com/onx24contact/appel-decouverte">
+        <span class="lock" aria-hidden="true">🔒</span>
+        Prendre rendez-vous
+      </button>
+    
+    <!-- Bande compteur + message -->
+    <section class="band card band-kpi" aria-label="Compteur clients et message d'action">
+      <div class="band-grid">
+        <div class="band-left">
+          <span class="band-count"><span id="counterValue" data-target="20">0</span>+</span>
+          <span class="band-text">clients installés</span>
+        </div>
+        <div class="band-right">
+          <span>Passez à l’<span class="hl-red">action</span> avant vos <span class="hl-red">concurrents</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section context" aria-labelledby="context-title">
+      <header class="section-head">
+        <h2 id="context-title">Contexte &amp; Niches cibles</h2>
+        <p class="sub">Un duo humains + IA pour absorber les pics d’appels, qualifier immédiatement et transformer les opportunités chaudes.</p>
+      </header>
+
+      <div class="pillars">
+        <article class="pillar card" aria-label="Offre pour services 24/7">
+          <div class="icon-row" aria-hidden="true">
+            <span class="ico">🔧</span>
+            <span class="ico">🔑</span>
+            <span class="ico">🚿</span>
+            <span class="ico">⚡️</span>
+          </div>
+          <h3>Services 24/7</h3>
+          <p class="muted">Plomberie, serrurerie, débouchage, électricité d’urgence… Nous décrochons immédiatement, filtrons et planifions pour vos équipes d’astreinte.</p>
+          <ul class="ticks">
+            <li>Décrochage prioritaire &lt; 5 min</li>
+            <li>Qualification + infos terrain</li>
+            <li>Dispatch selon vos plannings</li>
+          </ul>
+        </article>
+
+        <article class="pillar card" aria-label="Offre pour restauration rapide">
+          <div class="icon-row" aria-hidden="true">
+            <span class="ico">🍔</span>
+            <span class="ico">🍟</span>
+            <span class="ico">🍕</span>
+          </div>
+          <h3>Fast-foods &amp; restauration</h3>
+          <p class="muted">Absorbez les coups de rush : prise de commandes, redirection livraison, infos pratiques, upsell simple et standardisation des réponses.</p>
+          <ul class="ticks">
+            <li>Moins d’appels perdus en pic</li>
+            <li>Scripts cohérents sur tous les sites</li>
+            <li>Suppléments et menus boostés</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="punch">
+        <p>Quand une entreprise ne répond pas, le prospect appelle celle du dessous.</p>
+        <p>Vos budgets pubs alimentent vos concurrents si personne ne décroche au premier appel.</p>
+      </div>
+    </section>
+
+    <section class="section data" aria-labelledby="data-title">
+      <header class="section-head">
+        <h2 id="data-title">À <span class="hl">5 min</span>, l’intérêt est <span class="hl">intact</span>. À <span class="hl">10–30 min</span>, les chances de joindre <span class="hl">s’effondrent</span>.</h2>
+        <p class="sub">Études MIT/InsideSales et HBR : lecture rapide, message simple.</p>
+      </header>
+
+      <div class="charts" role="region" aria-label="Graphiques de performance">
+        <figure class="chart-card card">
+          <figcaption>Odds de contact selon délai de rappel (MIT &amp; InsideSales 2007)</figcaption>
+          <canvas id="chart-response" aria-label="Graphique odds de contact"></canvas>
+          <p class="chart-note muted small">Indices relatifs basés sur des études (HBR 2011, MIT/InsideSales 2007).</p>
+        </figure>
+
+        <figure class="chart-card card">
+          <figcaption>Probabilité de qualification (HBR 2011)</figcaption>
+          <canvas id="chart-qualification" aria-label="Graphique odds de qualification"></canvas>
+          <p class="chart-note muted small">Indices relatifs basés sur des études (HBR 2011, MIT/InsideSales 2007).</p>
+        </figure>
+      </div>
+
+      
+
+      <div class="calc card" aria-labelledby="calc-title">
+        <h3 id="calc-title">Calculez vos pertes mensuelles</h3>
+        <fieldset class="seg" aria-label="Choix du secteur">
+          <legend>Secteur</legend>
+          <label class="radio"><input type="radio" name="seg" value="services" checked /> Services 24/7</label>
+          <label class="radio"><input type="radio" name="seg" value="resto" /> Restauration rapide</label>
+        </fieldset>
+
+        <form id="lossForm" class="form-grid" aria-label="Calculateur de pertes">
+          <label for="missed">Appels manqués / mois
+            <input type="number" id="missed" min="0" inputmode="numeric" />
+          </label>
+          <label for="ticket">Panier moyen (€)
+            <input type="number" id="ticket" min="0" inputmode="numeric" />
+          </label>
+          <label for="conv">Taux de conversion si répondu (%)
+            <input type="number" id="conv" min="0" max="100" inputmode="numeric" />
+          </label>
+          <button type="submit" class="btn">Estimer</button>
+        </form>
+        <output id="lossOut" class="loss-out" aria-live="polite">Perte estimée / mois : <strong>—</strong></output>
+
+        <div class="calc-sources muted small">
+          <strong>Sources : </strong>
+          <a href="https://www.depanneo.com/prix/plombier/" target="_blank" rel="noopener">Depanneo — prix interventions</a>,
+          <a href="https://www.mesdepanneurs.fr/blog/prix-serrurier" target="_blank" rel="noopener">MesDépanneurs — serrurerie</a>,
+          <a href="https://infoartisanat.artisanat.fr/index.php?id=38731&lvl=notice_display" target="_blank" rel="noopener">Observatoire Fiducial — ticket restauration</a>.
+        </div>
+      </div>
+    </section>
+
+    <section class="section refs" aria-labelledby="refs-title">
+      <h2 id="refs-title">Références</h2>
+      <ol>
+        <li><a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener">Harvard Business Review — The Short Life of Online Sales Leads (2011)</a></li>
+        <li><a href="https://cdn2.hubspot.net/hub/25649/file-13535879-pdf/docs/mit_study.pdf" target="_blank" rel="noopener">MIT / InsideSales — Lead Response Management Study (2007, PDF)</a></li>
+        <li><a href="https://content.marketingsherpa.com/heap/DG07SFSlides/LeadResponseManagementReport.pdf" target="_blank" rel="noopener">MarketingSherpa — Synthèse Lead Response Management</a></li>
+        <li><a href="https://think.storage.googleapis.com/docs/click-to-call_research-studies.pdf" target="_blank" rel="noopener">Google / Ipsos — The Role of Click-to-Call (2013)</a></li>
+        <li><a href="https://www.depanneo.com/prix/" target="_blank" rel="noopener">Depanneo — baromètre prix services d’urgence</a></li>
+        <li><a href="https://www.sudradio.fr/sud-radio/lobservatoire-fiducial-2025-le-metier-de-la-restauration-a-la-loupe" target="_blank" rel="noopener">Sud Radio — Observatoire Fiducial 2025 (restauration)</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- Modal Calendly (inline embed) -->
+  <div id="calOverlay" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="calTitle" tabindex="-1">
+      <header class="modal-head">
+        <h3 id="calTitle">Prendre rendez-vous</h3>
+        <button id="calClose" class="modal-close" type="button" aria-label="Fermer la prise de rendez-vous">✕</button>
+      </header>
+      <div id="calEmbed" class="cal-embed" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Pages internes: Succès / Dommage -->
+  <div id="pageSuccess" class="page-overlay" aria-hidden="true">
+    <section class="page" role="dialog" aria-modal="true" aria-labelledby="successTitle" tabindex="-1">
+      <header class="page-head">
+        <span class="page-emoji" aria-hidden="true">🎉</span>
+        <h3 id="successTitle">Bravo ! Excellent choix.</h3>
+        <p class="page-sub">Rendez-vous confirmé — on a hâte d’échanger avec vous.</p>
+      </header>
+      <div class="page-body">
+        <p class="page-sub">Vous allez recevoir un e‑mail de confirmation.</p>
+      </div>
+      <footer class="page-foot">
+        <button id="successClose" class="btn-secondary" type="button" aria-label="Fermer la page de succès">Fermer</button>
+      </footer>
+    </section>
+  </div>
+
+  <div id="pageOops" class="page-overlay" aria-hidden="true">
+    <section class="page" role="dialog" aria-modal="true" aria-labelledby="oopsTitle" tabindex="-1">
+      <header class="page-head">
+        <span class="page-emoji" aria-hidden="true">🤔</span>
+        <h3 id="oopsTitle">Dommage… vous passez peut‑être à côté de clients.</h3>
+        <p class="page-sub">Encore une question ? On peut vous rappeler, ou répondre par e‑mail.</p>
+      </header>
+      <div class="page-body">
+        <div class="btn-row">
+          <button class="btn" id="oopsCallNow" aria-controls="callback" aria-expanded="false">Être rappelé maintenant</button>
+        </div>
+        <div class="page-section is-hidden" id="callback">
+          <h4>Être rappelé</h4>
+          <form id="callbackForm" class="form-grid" aria-label="Demande de rappel">
+            <input type="text" id="honey" name="honey" class="hp" autocomplete="off" tabindex="-1" aria-hidden="true" />
+            <label>Nom
+              <input type="text" id="cbName" autocomplete="name" required />
+            </label>
+            <label>Téléphone
+              <input type="tel" id="cbPhone" inputmode="tel" autocomplete="tel" required />
+            </label>
+            <button type="submit" id="cbSubmit" class="btn">Envoyer</button>
+          </form>
+          <p id="cbStatus" class="muted small" aria-live="polite"></p>
+        </div>
+        <div class="page-section">
+          <h4>Pourquoi nous rappeler ?</h4>
+          <ul class="ticks">
+            <li>Ne plus perdre d’opportunités pendant les pics.</li>
+            <li>Scripts cohérents, qualification immédiate, dispatch intelligent.</li>
+            <li>Mesure de l’impact (décroché, rappel, conversion).</li>
+          </ul>
+        </div>
+      </div>
+      <footer class="page-foot">
+        <button id="oopsClose" class="btn-secondary" type="button" aria-label="Fermer la page Dommage">Fermer</button>
+      </footer>
+    </section>
+  </div>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
