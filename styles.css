@@ -4,6 +4,8 @@
   --fg-soft: #d6d6d6;
   --muted: #a5a5a5;
   --accent: #3b82f6;
+  --accent-red: #e63946;
+  --accent-green: #00e676;
   --surface: rgba(18, 18, 18, 0.88);
   --line: rgba(255, 255, 255, 0.08);
   --shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
@@ -62,7 +64,7 @@ a:focus-visible {
 /* Mise en avant mots forts */
 .hl { color: #3b82f6; font-weight: 700; }
 /* Mise en avant rouge (HERO): texte rouge accessible + gras */
-.hl-red { color: #ef4444; font-weight: 700; }
+.hl-red { color: var(--accent-red); font-weight: 700; }
 
 button,
 input {
@@ -130,6 +132,10 @@ input {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+.cta-row { display:flex; gap:10px; align-items:center; margin-top: 8px; }
+.cta-note { margin: 4px 2px 0; color: var(--muted); font-size: .82rem; }
+.hero-secondary { height: 46px; padding: 10px 14px; }
 
 .video-wrap {
   position: relative;
@@ -263,6 +269,15 @@ video {
   gap: 18px;
 }
 
+/* Problem / Opportunity layout */
+.two-col { display:grid; grid-template-columns: 1fr; gap: 12px; }
+.col { display:grid; gap: 8px; }
+.badge { display:inline-flex; align-items:center; gap:6px; font-weight:700; }
+.badge.before { color: #ffb4b4; }
+.badge.after { color: var(--accent-green); }
+.list-compact { margin:0; padding-left: 18px; }
+.list-compact li { margin-bottom:4px; }
+
 .pillars {
   display: grid;
   grid-template-columns: 1fr;
@@ -279,6 +294,9 @@ video {
   box-shadow: var(--shadow);
   overflow: hidden;
 }
+
+.card:hover { transform: translateY(-2px); transition: transform .2s ease, background .2s ease; }
+.card:hover { background: rgba(24,24,24,.9); }
 
 .icon-row {
   display: flex;
@@ -371,6 +389,15 @@ video {
   font-size: 1.1rem;
 }
 
+/* Wizard */
+.progress { width: 100%; height: 8px; border-radius: 999px; background: rgba(255,255,255,.07); overflow: hidden; }
+.progress .bar { height: 100%; background: linear-gradient(90deg, #3b82f6, #60a5fa); transition: width .3s ease; }
+.step { display:block; }
+.step[hidden] { display:none; }
+.wizard-nav { display:flex; justify-content: space-between; gap: 10px; margin-top: 8px; }
+.range-row { display:grid; grid-template-columns: 1fr auto; gap: 10px; align-items:center; }
+.range-row input[type="range"] { width: 100%; }
+
 .seg {
   display: flex;
   gap: 14px;
@@ -430,6 +457,8 @@ input[type="number"]:focus-visible {
   color: #ffffff;
   cursor: pointer;
 }
+
+.btn:disabled { opacity: .6; cursor: not-allowed; }
 
 .loss-out {
   font-size: 1rem;
@@ -666,3 +695,49 @@ body.modal-open { overflow: hidden; }
   /* Larger, compact data section title on desktop */
   .data .section-head h2 { font-size: 1.7rem; }
 }
+
+/* Offre limitée */
+.offer { padding: 14px; }
+.offer-grid { display:grid; grid-template-columns: 1fr auto; gap: 10px; align-items:center; }
+.offer-right { font-weight: 600; }
+
+/* Social proof */
+.rating-row { display:flex; align-items:center; justify-content: space-between; gap: 10px; }
+.stars { display:flex; align-items:center; gap: 6px; font-size: 1.1rem; }
+.star { color: #fbbf24; filter: drop-shadow(0 1px 0 rgba(0,0,0,.3)); }
+.star.half { position: relative; }
+.rating-text { color: var(--fg-soft); font-weight: 600; margin-left: 6px; font-size: .95rem; }
+.bookings { color: var(--fg-soft); font-size: .95rem; }
+
+.testimonials { display:grid; grid-template-columns: 1fr; gap: 12px; }
+.testimonial .quote { margin: 0 0 6px; font-size: .98rem; }
+.testimonial .author { margin: 0; color: var(--muted); font-size: .85rem; }
+.video-wrap.small video { width: 100%; border-radius: 12px; }
+
+.logos { display:flex; flex-wrap: wrap; gap: 8px; }
+.logo-pill { display:inline-flex; align-items:center; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid var(--line); font-size: .85rem; }
+
+/* Live notifications removed */
+
+/* Final CTA */
+.final-cta .btn-row { justify-content: center; }
+
+/* Hover accents for pillars */
+.pillar.card:hover .ico { background: rgba(255,255,255,.14); }
+
+@media (min-width: 640px) {
+  .testimonials { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Lead form removed */
+
+/* FAQ accordion */
+.faq details { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: rgba(255,255,255,.04); }
+.faq details + details { margin-top: 8px; }
+.faq summary { font-weight: 600; cursor: pointer; list-style: none; }
+.faq summary::-webkit-details-marker { display:none; }
+.faq summary:after { content: "+"; float: right; }
+.faq details[open] summary:after { content: "–"; }
+
+/* Parallax subtle effect */
+.parallax { will-change: transform; transform: translateY(var(--py,0)); transition: transform .08s linear; }

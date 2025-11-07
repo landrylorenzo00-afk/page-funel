@@ -10,6 +10,9 @@
   const videoVeil = document.getElementById("videoVeil");
   const videoThumb = document.getElementById("videoThumb");
   const cta = document.getElementById("cta");
+  const ctaBottom = document.getElementById('ctaBottom');
+  const ctaDemo = document.getElementById('ctaDemo');
+  const seeDemoBottom = document.getElementById('seeDemoBottom');
   const hint = document.getElementById("hint");
 
   let unlocked = false;
@@ -108,6 +111,17 @@
       }
     });
   }
+
+  // Secondary demo CTAs
+  function scrollToVideo() {
+    if (!video) return;
+    try { video.currentTime = 0; } catch(_) {}
+    video.muted = false; video.volume = 1;
+    video.play().catch(()=>{});
+    video.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  if (ctaDemo) ctaDemo.addEventListener('click', scrollToVideo);
+  if (seeDemoBottom) seeDemoBottom.addEventListener('click', scrollToVideo);
 
   // Bouton “Voir la vidéo”: lecture inline + scroll (pas de nouvel onglet)
   (function wireInlineWatch(){
@@ -302,6 +316,9 @@
       openCalendly();
     });
   }
+  if (ctaBottom) {
+    ctaBottom.addEventListener('click', (e) => { e.preventDefault(); openCalendly(); });
+  }
 
   // Pages internes (Succès / Dommage)
   // (Liens calendrier supprimés – confirmation par e‑mail)
@@ -418,6 +435,59 @@
     obs.observe(el);
   })();
 
+  // Bookings weekly count + offer slots
+  (function initBookingsAndOffer(){
+    const bookingsEl = document.getElementById('bookingsCount');
+    const slotsTop = document.getElementById('slotsLeft');
+    const slotsBottom = document.getElementById('slotsLeftBottom');
+    // Randomized but stable per day
+    const seedBase = new Date().toDateString();
+    function seededRand(min, max) {
+      let h = 0; for (let i=0;i<seedBase.length;i++) h = Math.imul(31, h) + seedBase.charCodeAt(i) | 0;
+      const x = Math.abs(Math.sin(h)) % 1; return Math.floor(x * (max - min + 1)) + min;
+    }
+    const weekly = seededRand(12, 28);
+    const slotsTarget = 11; // FOMO éthique: valeur crédible et fixe
+    function animateNumber(el, target, duration=800) {
+      if (!el) return;
+      const start = parseInt(el.textContent.replace(/\D/g,'')) || 0;
+      const t0 = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / duration);
+        const val = Math.round(start + (target - start) * p);
+        el.textContent = String(val);
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    if (bookingsEl) animateNumber(bookingsEl, weekly, 900);
+    if (slotsTop) animateNumber(slotsTop, slotsTarget, 900);
+    if (slotsBottom) animateNumber(slotsBottom, slotsTarget, 900);
+  })();
+
+  // Limited offer countdown (to end of month)
+  (function initOfferTimer(){
+    const elTop = document.getElementById('offerTimer');
+    const elBottom = document.getElementById('offerTimerBottom');
+    function pad(n){ return n.toString().padStart(2,'0'); }
+    function endOfMonth(){
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth()+1, 1, 0,0,0,0);
+    }
+    function tick(){
+      const now = new Date();
+      const end = endOfMonth();
+      let diff = Math.max(0, end - now);
+      const d = Math.floor(diff / (24*3600e3)); diff -= d*24*3600e3;
+      const h = Math.floor(diff / 3600e3); diff -= h*3600e3;
+      const m = Math.floor(diff / 60e3); diff -= m*60e3;
+      const s = Math.floor(diff / 1e3);
+      const val = (d>0? d+"j ":"") + pad(h)+":"+pad(m)+":"+pad(s);
+      if (elTop) elTop.textContent = val; if (elBottom) elBottom.textContent = val;
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+
   // Charts (Chart.js) — fallback
   function chartsFallbackMessage() {
     const cards = document.querySelectorAll('.chart-card');
@@ -452,11 +522,11 @@
     chartRespInstance = new Chart(responseCtx, {
       type: "line",
       data: {
-        labels: ["5 min", "10 min", "30 min"],
+        labels: ["< 5 min", "10 min", "30 min"],
         datasets: [
           {
             label: "Indice odds de contact (5 min = 100)",
-            data: [100, 20, 1],
+            data: [100, 15, 5],
             borderColor: "#3b82f6",
             backgroundColor: "rgba(59, 130, 246, 0.2)",
             borderWidth: 2,
@@ -531,7 +601,16 @@
   const missedInput = document.getElementById("missed");
   const ticketInput = document.getElementById("ticket");
   const convInput = document.getElementById("conv");
+  const missedRange = document.getElementById('missedRange');
+  const ticketRange = document.getElementById('ticketRange');
+  const convRange = document.getElementById('convRange');
   const segmentRadios = document.querySelectorAll('input[name="seg"]');
+  const steps = Array.from(document.querySelectorAll('.step'));
+  const nextBtn = document.getElementById('nextStep');
+  const prevBtn = document.getElementById('prevStep');
+  const progressBar = document.getElementById('calcProgress');
+  const personalizedCta = document.getElementById('personalizedCta');
+  const finalAmount = document.getElementById('finalAmount');
 
   const defaults = {
     services: { missed: 30, ticket: 200, conv: 50 },
@@ -543,6 +622,9 @@
     if (missedInput) missedInput.value = values.missed;
     if (ticketInput) ticketInput.value = values.ticket;
     if (convInput) convInput.value = values.conv;
+    if (missedRange) missedRange.value = values.missed;
+    if (ticketRange) ticketRange.value = values.ticket;
+    if (convRange) convRange.value = values.conv;
     computeLoss();
   }
 
@@ -571,11 +653,28 @@
     const convRate = Math.max(0, Math.min(100, Number(convInput.value || 0))) / 100;
     const loss = missed * ticket * convRate;
     out.innerHTML = `Perte estimée / mois : <strong>${formatEUR(loss)}</strong>`;
+    // Personalize CTA and final headline
+    const txt = `Récupérez ${formatEUR(loss)} / mois`;
+    if (personalizedCta) personalizedCta.textContent = txt;
+    if (finalAmount) finalAmount.textContent = `${formatEUR(loss)} / mois`;
   }
 
-  if (form) {
-    form.addEventListener("submit", computeLoss);
+  // Wizard logic
+  let stepIndex = 1;
+  function showStep(n) {
+    stepIndex = Math.max(1, Math.min(5, n));
+    steps.forEach((s) => { const id = Number(s.dataset.step); s.hidden = id !== stepIndex; });
+    if (progressBar) progressBar.style.width = `${((stepIndex-1)/4)*100}%`;
+    if (prevBtn) prevBtn.disabled = stepIndex === 1;
+    if (nextBtn) nextBtn.textContent = stepIndex === 5 ? 'Terminer' : 'Suivant';
   }
+  function nextStepFn(){
+    if (stepIndex === 4) computeLoss();
+    showStep(stepIndex + 1);
+  }
+  function prevStepFn(){ showStep(stepIndex - 1); }
+  if (nextBtn) nextBtn.addEventListener('click', nextStepFn);
+  if (prevBtn) prevBtn.addEventListener('click', prevStepFn);
 
   segmentRadios.forEach((radio) => {
     radio.addEventListener("change", () => setDefaults(getSelectedSegment()));
@@ -586,7 +685,35 @@
     ["input", "change"].forEach((eventName) => input.addEventListener(eventName, computeLoss));
   });
 
+  // Sync ranges <-> inputs
+  if (missedRange && missedInput) {
+    missedRange.addEventListener('input', () => { missedInput.value = missedRange.value; });
+    missedInput.addEventListener('input', () => { missedRange.value = missedInput.value; });
+  }
+  if (ticketRange && ticketInput) {
+    ticketRange.addEventListener('input', () => { ticketInput.value = ticketRange.value; });
+    ticketInput.addEventListener('input', () => { ticketRange.value = ticketInput.value; });
+  }
+  if (convRange && convInput) {
+    convRange.addEventListener('input', () => { convInput.value = convRange.value; });
+    convInput.addEventListener('input', () => { convRange.value = convInput.value; });
+  }
+
   setDefaults(getSelectedSegment());
+  showStep(1);
+
+  if (personalizedCta) {
+    personalizedCta.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (cta && cta.disabled) {
+        showToast('Regardez la vidéo 5 s pour débloquer.', 'info');
+        return;
+      }
+      openCalendly();
+    });
+  }
+
+  // (Audit quick-capture removed per request)
 
   // Intersection observer for subtle reveal
   const observer = new IntersectionObserver(
@@ -611,4 +738,23 @@
       document.querySelectorAll('.pre:not(.in)').forEach(el => el.classList.add('in'));
     }, 600);
   });
+
+  // (Live notifications removed per request)
+
+  // (Lead form removed per request)
+
+  // Parallax (subtle)
+  (function initParallax(){
+    const els = document.querySelectorAll('.parallax');
+    if (!els.length) return;
+    let raf = null;
+    function update(){
+      const y = window.scrollY || 0;
+      els.forEach(el => { el.style.setProperty('--py', `${Math.min(12, y * 0.04)}px`); });
+      raf = null;
+    }
+    function onScroll(){ if (raf) return; raf = requestAnimationFrame(update); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
+  })();
 })();

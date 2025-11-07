@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Receptionist.IA — Répondeur 24/7 assisté par IA</title>
+  <title>Receptionist.IA — Ne ratez plus aucun appel</title>
   <meta name="description" content="Receptionist.IA — Vidéo obligatoire pour débloquer la prise de rendez-vous. Données réelles sur les appels manqués et l’impact du délai de rappel." />
   <meta name="theme-color" content="#0b0b0b" />
-  <meta property="og:title" content="Receptionist.IA — Répondeur 24/7 assisté par IA" />
-  <meta property="og:description" content="Vidéo obligatoire → CTA déverrouillé. Études HBR/MIT/Google sur appels manqués, graphiques et calculateur." />
+  <meta property="og:title" content="Receptionist.IA — Ne ratez plus aucun appel" />
+  <meta property="og:description" content="Contactez vos prospects en < 5 min (21× plus de chances). Études HBR/MIT + calculateur d'impact et démo." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,20 +24,19 @@
         <a class="logo-link" href="#top" aria-label="Retour en haut de page">
           <img src="assets/logo.png" alt="Logo Receptionist.IA" class="logo" />
         </a>
-        <div class="hero-copy">
-          <h1>Réceptionniste IA</h1>
+        <div class="hero-copy parallax">
+          <h1>Ne laissez plus aucun appel financer vos concurrents</h1>
           <p class="metric">
-            <span class="hl-red">+3 000</span> € de <span class="hl-red">chiffre d’affaires</span> le premier mois
-            et <span class="hl-red">+20 h</span> d’appels <span class="hl-red">économisées</span>.
+            Contactez vos prospects en <span class="hl-red">moins de 5 minutes</span> et augmentez vos conversions de <span class="hl-red">21×</span>.
           </p>
-          <p class="assure">garantie remboursement intégral</p>
-          <p class="punchline">Chaque appel manqué finance votre concurrent.</p>
-          <p class="hint" id="hint">Regardez la vidéo jusqu’au bout pour débloquer la prise de rendez-vous.</p>
+          <p class="assure">Garantie remboursement intégral — sans engagement</p>
+          <p class="punchline">Chaque appel manqué = chiffre d’affaires perdu.</p>
+          <p class="hint" id="hint">Regardez la vidéo 5 s pour débloquer l’essai gratuit.</p>
         </div>
       </div>
 
-      <div class="video-wrap" aria-label="Vidéo de présentation">
-        <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="assets/poster.jpg">
+      <div class="video-wrap parallax" aria-label="Vidéo de présentation">
+        <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="assets/miniature.png">
           <source src="assets/video.mp4" type="video/mp4" />
           Votre navigateur ne supporte pas la vidéo HTML5.
         </video>
@@ -46,11 +45,16 @@
         <button id="watch" class="play" type="button" aria-label="Lire la vidéo">▶︎ Voir la vidéo</button>
       </div>
 
-      <button id="cta" class="cta locked" type="button" disabled aria-disabled="true" data-calendly-url="https://calendly.com/onx24contact/appel-decouverte">
-        <span class="lock" aria-hidden="true">🔒</span>
-        Prendre rendez-vous
-      </button>
-    
+      <div class="cta-row">
+        <button id="cta" class="cta locked" type="button" disabled aria-disabled="true" data-calendly-url="https://calendly.com/onx24contact/appel-decouverte">
+          <span class="lock" aria-hidden="true">🔒</span>
+          Essayer gratuitement
+        </button>
+        <button id="ctaDemo" class="btn-secondary hero-secondary" type="button" aria-label="Voir la démo">Voir la démo</button>
+      </div>
+      <p class="cta-note">Sans carte — annulation en un clic</p>
+    </section>
+
     <!-- Bande compteur + message -->
     <section class="band card band-kpi" aria-label="Compteur clients et message d'action">
       <div class="band-grid">
@@ -60,6 +64,18 @@
         </div>
         <div class="band-right">
           <span>Passez à l’<span class="hl-red">action</span> avant vos <span class="hl-red">concurrents</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Offre limitée / Timer -->
+    <section class="offer card" aria-label="Offre limitée">
+      <div class="offer-grid">
+        <div>
+          <strong>Offre de lancement</strong> — 1 mois offert pour les 20 premiers inscrits.
+        </div>
+        <div class="offer-right">
+          Plus que <strong id="slotsLeft">—</strong> places ce mois‑ci · <span id="offerTimer" aria-live="polite">00:00:00</span>
         </div>
       </div>
     </section>
@@ -109,10 +125,53 @@
       </div>
     </section>
 
+    <!-- Problème / Opportunité -->
+    <section class="section problem" aria-labelledby="problem-title">
+      <header class="section-head">
+        <h2 id="problem-title">Chaque sonnerie non décrochée, c’est un client qui file chez le concurrent</h2>
+        <p class="sub">78 % des acheteurs choisissent le premier répondant (MIT/InsideSales).</p>
+      </header>
+      <div class="card two-col">
+        <div class="col">
+          <span class="badge before">Avant — appels perdus</span>
+          <ul class="list-compact">
+            <li>Prospects redirigés vers “l’entreprise du dessous”.</li>
+            <li>Stress en pic, messages vocaux non traités.</li>
+            <li>Budget pub qui finance… la concurrence.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <span class="badge after">Après — appels gérés</span>
+          <ul class="list-compact">
+            <li>Zéro appel manqué en pic comme en creux.</li>
+            <li>Rappel instantané, qualification et dispatch intelligents.</li>
+            <li>Chiffre d’affaires sauvé, expérience client apaisée.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="section solution" aria-labelledby="solution-title">
+      <header class="section-head">
+        <h2 id="solution-title">Le duo Humain + IA qui décroche en < 5 minutes, 24/7</h2>
+        <p class="sub">Notre réceptionniste IA décroche, filtre, qualifie et planifie les rendez‑vous — puis transfère aux bonnes équipes.</p>
+      </header>
+      <div class="card">
+        <ul class="ticks">
+          <li><strong>Zéro appel manqué</strong> — même en cas de rush.</li>
+          <li><strong>Clients rappelés instantanément</strong> — pas d’attente, pas de perte.</li>
+          <li><strong>Synchronisation calendrier</strong> — Calendly / CRM / plannings.</li>
+          <li><strong>Scripts personnalisés</strong> — ton, priorités, consignes locales.</li>
+          <li><strong>Garantie remboursement intégral</strong> — sans engagement.</li>
+        </ul>
+      </div>
+    </section>
+
     <section class="section data" aria-labelledby="data-title">
       <header class="section-head">
-        <h2 id="data-title">À <span class="hl">5 min</span>, l’intérêt est <span class="hl">intact</span>. À <span class="hl">10–30 min</span>, les chances de joindre <span class="hl">s’effondrent</span>.</h2>
-        <p class="sub">Études MIT/InsideSales et HBR : lecture rapide, message simple.</p>
+        <h2 id="data-title">Réponse <span class="hl">< 5 min</span> = <span class="hl">21×</span> plus de qualification</h2>
+        <p class="sub">78 % des acheteurs choisissent le premier répondant · les conversions chutent de 391 % entre 1 et 2 minutes.</p>
       </header>
 
       <div class="charts" role="region" aria-label="Graphiques de performance">
@@ -129,38 +188,114 @@
         </figure>
       </div>
 
-      
-
+      <!-- Diagnostic / Calculateur multi‑étapes -->
       <div class="calc card" aria-labelledby="calc-title">
-        <h3 id="calc-title">Calculez vos pertes mensuelles</h3>
-        <fieldset class="seg" aria-label="Choix du secteur">
-          <legend>Secteur</legend>
-          <label class="radio"><input type="radio" name="seg" value="services" checked /> Services 24/7</label>
-          <label class="radio"><input type="radio" name="seg" value="resto" /> Restauration rapide</label>
-        </fieldset>
+        <h3 id="calc-title">Diagnostiquez votre perte mensuelle</h3>
+        <div class="progress" aria-hidden="true"><div id="calcProgress" class="bar" style="width: 0%"></div></div>
 
-        <form id="lossForm" class="form-grid" aria-label="Calculateur de pertes">
-          <label for="missed">Appels manqués / mois
-            <input type="number" id="missed" min="0" inputmode="numeric" />
-          </label>
-          <label for="ticket">Panier moyen (€)
-            <input type="number" id="ticket" min="0" inputmode="numeric" />
-          </label>
-          <label for="conv">Taux de conversion si répondu (%)
-            <input type="number" id="conv" min="0" max="100" inputmode="numeric" />
-          </label>
-          <button type="submit" class="btn">Estimer</button>
+        <form id="lossForm" aria-label="Calculateur de pertes" novalidate>
+          <!-- Étape 1: secteur -->
+          <section class="step" data-step="1" aria-labelledby="step1">
+            <h4 id="step1">Votre secteur</h4>
+            <fieldset class="seg" aria-label="Choix du secteur">
+              <label class="radio"><input type="radio" name="seg" value="services" checked /> Services 24/7</label>
+              <label class="radio"><input type="radio" name="seg" value="resto" /> Restauration rapide</label>
+            </fieldset>
+          </section>
+
+          <!-- Étape 2: appels manqués -->
+          <section class="step" data-step="2" aria-labelledby="step2" hidden>
+            <h4 id="step2">Appels manqués / mois</h4>
+            <div class="range-row">
+              <input type="range" id="missedRange" min="0" max="300" step="5" />
+              <input type="number" id="missed" min="0" inputmode="numeric" aria-label="Appels manqués" />
+            </div>
+          </section>
+
+          <!-- Étape 3: panier moyen -->
+          <section class="step" data-step="3" aria-labelledby="step3" hidden>
+            <h4 id="step3">Panier moyen (€)</h4>
+            <div class="range-row">
+              <input type="range" id="ticketRange" min="0" max="500" step="5" />
+              <input type="number" id="ticket" min="0" inputmode="numeric" aria-label="Panier moyen" />
+            </div>
+          </section>
+
+          <!-- Étape 4: taux de conversion -->
+          <section class="step" data-step="4" aria-labelledby="step4" hidden>
+            <h4 id="step4">Taux de conversion si répondu (%)</h4>
+            <div class="range-row">
+              <input type="range" id="convRange" min="0" max="100" step="1" />
+              <input type="number" id="conv" min="0" max="100" inputmode="numeric" aria-label="Taux de conversion" />
+            </div>
+          </section>
+
+          <!-- Étape 5: résultat -->
+          <section class="step" data-step="5" aria-labelledby="step5" hidden>
+            <h4 id="step5">Résultat</h4>
+            <output id="lossOut" class="loss-out" aria-live="polite">Perte estimée / mois : <strong>—</strong></output>
+            <div class="btn-row">
+              <button id="personalizedCta" type="button" class="btn" data-calendly-url="https://calendly.com/onx24contact/appel-decouverte">Récupérer ce manque à gagner</button>
+            </div>
+            <p class="muted small">Ce chiffre est basé sur votre volume réel d’appels et votre panier moyen. Pas de promesse : vos propres chiffres.</p>
+          </section>
+
+          <div class="wizard-nav">
+            <button type="button" id="prevStep" class="btn-secondary" disabled>Précédent</button>
+            <button type="button" id="nextStep" class="btn">Suivant</button>
+          </div>
+
+          <div class="calc-sources muted small">
+            <strong>Sources : </strong>
+            <a href="https://www.depanneo.com/prix/plombier/" target="_blank" rel="noopener">Depanneo — prix interventions</a>,
+            <a href="https://www.mesdepanneurs.fr/blog/prix-serrurier" target="_blank" rel="noopener">MesDépanneurs — serrurerie</a>,
+            <a href="https://infoartisanat.artisanat.fr/index.php?id=38731&lvl=notice_display" target="_blank" rel="noopener">Observatoire Fiducial — ticket restauration</a>.
+          </div>
         </form>
-        <output id="lossOut" class="loss-out" aria-live="polite">Perte estimée / mois : <strong>—</strong></output>
-
-        <div class="calc-sources muted small">
-          <strong>Sources : </strong>
-          <a href="https://www.depanneo.com/prix/plombier/" target="_blank" rel="noopener">Depanneo — prix interventions</a>,
-          <a href="https://www.mesdepanneurs.fr/blog/prix-serrurier" target="_blank" rel="noopener">MesDépanneurs — serrurerie</a>,
-          <a href="https://infoartisanat.artisanat.fr/index.php?id=38731&lvl=notice_display" target="_blank" rel="noopener">Observatoire Fiducial — ticket restauration</a>.
-        </div>
       </div>
     </section>
+
+    <!-- Preuve sociale -->
+    <section class="section social" aria-labelledby="social-title">
+      <header class="section-head">
+        <h2 id="social-title">Preuve sociale</h2>
+        <p class="sub">93 % des consommateurs s’appuient sur les avis en ligne. Les produits avec avis ont une probabilité d’achat 270 % plus élevée.</p>
+      </header>
+      <div class="rating-row card">
+        <div class="stars" aria-label="Note moyenne 4,3 sur 5">
+          <span class="star full" aria-hidden="true">★</span>
+          <span class="star full" aria-hidden="true">★</span>
+          <span class="star full" aria-hidden="true">★</span>
+          <span class="star full" aria-hidden="true">★</span>
+          <span class="star half" aria-hidden="true">★</span>
+          <span class="rating-text">4,3/5</span>
+        </div>
+        <div class="bookings">Cette semaine : <strong id="bookingsCount">—</strong> créneaux réservés</div>
+      </div>
+
+      <div class="testimonials">
+        <article class="testimonial card">
+          <p class="quote">“Nous avons réduit nos appels manqués de 80 % et augmenté nos ventes de 25 % grâce à Receptionist.IA.”</p>
+          <p class="author"><img src="assets/logo.png" alt="Logo Plomberie Lyon" style="width:22px;height:22px;border-radius:50%;vertical-align:middle;margin-right:6px;"/>— Nadia, Directrice, Plomberie Lyon</p>
+        </article>
+        <article class="testimonial card">
+          <p class="quote">“Réponse en moins de 3 minutes, scripts cohérents : +18 % de taux de conversion en 2 semaines.”</p>
+          <p class="author"><img src="assets/logo.png" alt="Logo QSR" style="width:22px;height:22px;border-radius:50%;vertical-align:middle;margin-right:6px;"/>— Kévin, Multi‑franchisé QSR</p>
+        </article>
+        <article class="testimonial card video">
+          <div class="video-wrap small" aria-label="Témoignage vidéo">
+            <video controls preload="metadata" playsinline muted loading="lazy">
+              <source src="assets/video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <p class="author">— Témoignage client (2 min)</p>
+        </article>
+      </div>
+
+      
+    </section>
+
+    
 
     <section class="section refs" aria-labelledby="refs-title">
       <h2 id="refs-title">Références</h2>
@@ -188,6 +323,48 @@
 
   <!-- Toast notifications -->
   <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- FAQ -->
+  <section class="section faq wrap" aria-labelledby="faq-title">
+    <header class="section-head">
+      <h2 id="faq-title">FAQ &amp; Garantie</h2>
+      <p class="sub">Tarif, intégration, confidentialité — l’essentiel en bref.</p>
+    </header>
+    <div class="card">
+      <details>
+        <summary>Comment s’intègre Receptionist.IA ?</summary>
+        <p>Via redirection d’appel + prise de rendez‑vous (Calendly, meetergo) et webhooks vers votre CRM.</p>
+      </details>
+      <details>
+        <summary>Combien ça coûte ?</summary>
+        <p>Forfait simple, sans engagement. 1er mois offert pour les 20 premiers (offre limitée).</p>
+      </details>
+      <details>
+        <summary>Et la confidentialité ?</summary>
+        <p>Transferts chiffrés, suppression sur demande, scripts et journaux consultables.</p>
+      </details>
+      <details>
+        <summary>Que se passe‑t‑il après l’essai ?</summary>
+        <p>On garde les gains — annulation en un clic si non convaincu.</p>
+      </details>
+      <details>
+        <summary>Garantie ?</summary>
+        <p>Remboursement intégral si l’impact n’est pas au rendez‑vous.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="section final-cta wrap" aria-labelledby="final-title">
+    <header class="section-head">
+      <h2 id="final-title">Prêt à récupérer <span id="finalAmount">vos appels</span> ?</h2>
+      <p class="sub">Plus que <strong id="slotsLeftBottom">—</strong> places ce mois‑ci · <span id="offerTimerBottom">00:00:00</span></p>
+    </header>
+    <div class="btn-row">
+      <button class="btn" id="ctaBottom" data-calendly-url="https://calendly.com/onx24contact/appel-decouverte">Essayer gratuitement</button>
+      <button class="btn-secondary" id="seeDemoBottom">Voir la démo</button>
+    </div>
+  </section>
 
   <!-- Pages internes: Succès / Dommage -->
   <div id="pageSuccess" class="page-overlay" aria-hidden="true">
